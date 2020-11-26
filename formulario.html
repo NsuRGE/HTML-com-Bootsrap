@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <title>Formulário</title>
+    <meta name="viewport" content="width=device-width, intial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over forms and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        function clearForm() {
+            $('form').get(0).reset()
+        }
+
+        function slider() {
+            document.getElementById("formControlRange").oninput = function(){
+                percentagem()
+            };
+        }
+
+        function percentagem() {
+            var val = document.getElementById("formControlRange").value;
+            document.getElementById('formOutput').innerHTML = val;
+            $("#formOutput").removeClass("alert-sucess alert-danger");
+            if ($("#formControlRange").val() >= 50) {
+                $("#formOutput").addClass("alert-success");
+            } else {
+                $("#formOutput").addClass("alert-danger");
+            }
+        }
+
+    </script>
+    <style>
+        div.form-check{
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form class="needs-validation" novalidate>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" required>
+                    <div class="invalid-feedback">O nome é de preenchimento obrigatório.</div>
+                </div>
+                <div class="form-group col-6">
+                    <label for="inputApelido">Apelido</label>
+                    <input type="text" class="form-control" id="inputApelido" required>
+                    <div class="invalid-feedback">O apelido é de preenchimento obrigatório.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" required>
+                    <div class="invalid-feedback">O email é de preenchimento obrigatório.</div>
+                </div>
+                <div class="form-group col-6">
+                    <label for="inputTelefone">Telefone</label>
+                    <input type="tel" class="form-control" id="inputTelefone" required>
+                    <div class="invalid-feedback">O telefone é de preenchimento obrigatório.</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputMorada">Morada</label>
+                    <textarea class="form-control" rows="3" id="inputMorada" required></textarea>
+                    <div class="invalid-feedback">A morada é de preenchimento obrigatório.</div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputMorada2">Morada 2</label>
+                    <textarea class="form-control" rows="3" id="inputMorada2"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="form-check form-check inline">
+                        <label for="CheckGostos">Hobbies:&nbsp;</label>
+                            </div>
+                            <div class="form-check form-check inline">
+                                <input class="form-check-input" type="checkbox" name="cinema" id="inlineCheckbox1" value="Checkbox1" />
+                                <label class="form-check-label" for="inlineCheckbox1">Cinema</label>&nbsp;&nbsp;
+                            </div>
+                            <div class="form-check form-check inline">
+                                <input class="form-check-input" type="checkbox" name="musica" id="inlineCheckbox2" value="Checkbox2" />
+                                <label class="form-check-label" for="inlineCheckbox2">Música</label>&nbsp;&nbsp;
+                            </div>
+                            <div class="form-check form-check inline">
+                                <input class="form-check-input" type="checkbox" name="musica" id="inlineCheckbox3" value="Checkbox3" />
+                                <label class="form-check-label" for="inlineCheckbox3">Culinária</label>
+                            </div>
+                </div>
+            
+                <div class="form-group col-md-6">
+                    <div class="form-check form-check inline">
+                        <input class="form-check-input" type="radio" name="genero" id="inlineRadio1" value="Radio1" />
+                        <label class="form-check-label" for="inlineRadio1">Feminino</label>&nbsp;&nbsp;
+                    </div>
+                    <div class="form-check form-check inline">
+                        <input class="form-check-input" type="radio" name="genero" id="inlineRadio2" value="Radio2" />
+                        <label class="form-check-label" for="inlineRadio2">Masculino</label>
+                    </div>
+                </div>
+            </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="formControlRange">Com que percentagem recomendaria o Bootstrap a terceiros?</label>
+                        <input type="range" class="form-control-range" id="formControlRange" onchange="slider()" min="0" max="100">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <h1><output id="formOutput" class="alert"></output></h1>
+                    </div>
+                </div>
+            <div class="form-row">
+                <input class="btn btn-outline-secondary" onclick="clearForm()" type="reset" value="cancelar">&nbsp;
+                <input class="btn btn-primary" type="submit" value="enviar" />
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</body>
+
+</html>
